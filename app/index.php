@@ -1,14 +1,9 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+require __DIR__ . '/../vendor/autoload.php';
 
-require __DIR__ . '/vendor/autoload.php';
 use App\Utils\DB;
-
 use Slim\Psr7\Request as Request;
 use Slim\Psr7\Response as Response;
-
 use Slim\Factory\AppFactory;
 use DI\Container;
 use Slim\Routing\RouteCollectorProxy;
@@ -21,12 +16,13 @@ $container = new Container();
 AppFactory::setContainer($container);
 $app = AppFactory::create();
 
-// $app->add(new BasePathMiddleware($app));
 
 $app->addBodyParsingMiddleware();
 $app->addRoutingMiddleware();
 $app->addErrorMiddleware(true, true, true);
+// $app->add(new BasePathMiddleware($app));
 
+/*
 $app->add(new Tuupola\Middleware\JwtAuthentication([
   "algorithm" => ["HS512"],
   'secure' => false,
@@ -48,12 +44,18 @@ $app->add(new Tuupola\Middleware\JwtAuthentication([
     return $response->withHeader("Content-Type", "application/json");}
 ]));
 
-$app->get('/', [HomeController::class, 'home']);
 
 $app->group('/auth',function(RouteCollectorProxy $group){
     $group->post('/login', [UserController::class, 'login']);
 });
 
+*/
+
+$app->get('/', [HomeController::class, 'home']);
+
+$app->group('/etate',function(RouteCollectorProxy $group){
+  $group->post('/get/{id}', [EtapeController::class, 'login']);
+});
 
 $app->post('/customers-data/all', function (Request $request, Response $response) use ($db) {
     $sql = "SELECT * FROM customers";
@@ -74,7 +76,6 @@ $app->post('/customers-data/all', function (Request $request, Response $response
       );
     }
 
-    
       $response->getBody()->write(json_encode($error));
       return $response->withHeader('content-type', 'application/json')->withStatus(500);
 });
