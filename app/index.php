@@ -50,7 +50,7 @@ $app->group('/auth',function(RouteCollectorProxy $group){
 });
 
 $app->group('/parcours',function(RouteCollectorProxy $group){
-  $group->get('/{id}', [ParcoursController::class, 'getParcour']);
+  $group->get('/{id}', [ParcouresController::class, 'getParcoure']);
 });
 
 $app->group('/etape',function(RouteCollectorProxy $group){
@@ -60,11 +60,12 @@ $app->group('/etape',function(RouteCollectorProxy $group){
 });
 
 $app->group('/choix',function(RouteCollectorProxy $group){
-  $group->get('/etape/{id}', [ChoixController::class, 'getChpoix']);
+  $group->get('/etape/{id}', [ChoixController::class, 'getChoix']);
 });
 
 $app->group('/leaderboard',function(RouteCollectorProxy $group){
-  $group->get('/', [leaderboardController::class, 'getLeaderboard']);
+  $group->get('/make', [leaderboardController::class, 'makeLeaderboard']);
+  $group->get('/get', [leaderboardController::class, 'getLeaderboard']);
 });
 
 
