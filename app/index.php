@@ -54,7 +54,7 @@ $app->group('/parcours',function(RouteCollectorProxy $group){
 });
 
 $app->group('/etape',function(RouteCollectorProxy $group){
-  $group->get('/{id}', [EtapeController::class, 'getEtape']);
+  $group->get('/get/{id}', [EtapeController::class, 'getEtape']);
   $group->get('/all', [EtapeController::class, 'getAll']);
   $group->get('{id_etape}/save/{id_choix}', [EtapeController::class, 'choisirSolution']);
 });
