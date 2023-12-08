@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <title>Nuit de l'Info</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://kit.fontawesome.com/9e5fc47a4e.js" crossorigin="anonymous"></script>
+    <link href="css/style.css" rel="stylesheet">
+</head>
+
+<div class="header">
+    <h1 style="text-align: center;"><span>N</span><span>u</span><span>i</span><span>t</span>
+        <span>d</span><span>e</span>
+        <span>l</span><span>'</span><span>I</span><span>n</span><span>f</span><span>o</span>
+        <span>2</span><span>0</span><span>2</span><span>3</span></h1>
+    <ul>
+        <li><a href="./index.html"><i style="width: auto;" class="fa-solid fa-tree-city"></i></a></li>
+        <li><a href="./parcours.html" class="active"><i class="fa-brands fa-pagelines"></i></a></li>
+        <li><a href="./login.html"><i style="width: auto;" class="fa-regular fa-circle-user"></i></a></li>
+    </ul>
+</div>
+
+<div id="content" class="content">
+    Le changement climatique impact aussi les différents écosystèmes à travers le monde. Par exemple, les fôrets sont soumises à une augmentation du risque d'incendie. Ces incendies affectent les ecosystèmes, les espèces, les humains ainsi que leurs biens et leur santé.
+    
+    <img src="https://www.ipcc.ch/report/ar6/wg2/downloads/figures/IPCC_AR6_WGII_Figure_SPM_003a.png" alt="Figure SPM.3 WGII IPCC | Synthetic diagrams of global and sectoral assessments and examples of regional key risks.">
+    
+    <iframe style="width: 80vw; height: 50vh; border: none;"
+        src="https://query.wikidata.org/embed.html#%23defaultView%3AMap%0ASELECT%20DISTINCT%20*%20WHERE%20%7B%0A%20%20%3Fitem%20wdt%3AP31%2Fwdt%3AP279*%20wd%3AQ4421%3B%0A%20%20%20%20%20%20%20%20wdt%3AP625%20%3Fgeo%20.%0A%7D"
+        referrerpolicy="origin" sandbox="allow-scripts allow-same-origin allow-popups">
+    </iframe>
+</div>
+
+<script>
+    function load_part(page) {
+        fetch("./parcours/" + page + ".html")
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("content").innerHTML = data;
+                animateElementsFI()
+
+            })
+            .catch(error => {
+                console.error("Une erreur s'est produite lors du chargement de la partie : " + error);
+            });
+    };
+
+    load_part("Accueil")
+</script>
+</body>
+
+</html>
