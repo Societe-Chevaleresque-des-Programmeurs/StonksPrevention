@@ -9,37 +9,25 @@ services:
       - ./app:/var/www/html
     networks:
       - ndli-net
-
-  apache-httpd: # Service Apache
-  
-    build:
-      context: .
-      dockerfile: ./apache/.dockerfile
-    volumes:
-      - ./app:/var/www/html
     ports:
       - "8084:80"
-    depends_on:
-      - php-fpm
-    networks:
-      - ndli-net
+
+
 
   db: # Service Mariadb
     image: mariadb:latest
     networks:
       - ndli-net
-    env_file:
-      - .env # fichier contenant les mot de passes
     environment:
-      MYSQL_ROOT_PASSWORD: ${DATABASE_ROOT_PASSWORD}
-      MYSQL_DATABASE: ${DATABASE}
-      MYSQL_USER: ${DATABASE_USER}
-      MYSQL_PASSWORD: ${DATABASE_PASSWORD}
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: NUITINFO
+
     volumes:
       - ./mariadb/mysql:/var/lib/mysql
       - ./mariadb:/docker-entrypoint-initdb.d
     command: --init-file /docker-entrypoint-initdb.d/ndli.sql
     restart: unless-stopped
+
 
 
 networks:
