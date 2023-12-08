@@ -31,6 +31,7 @@ class LeaderboardController extends BaseController
         // Récupération de l'utilisateur courant
         $jwt = str_replace('Bearer ', '', $_COOKIE['jwt']['HTTP_AUTHORIZATION'][0]);
         $decoded = JWT::decode($jwt, Constants::JWT_SECRET);
+        // TODO à corriger
         var_dump($decoded);
         return $response->withStatus(500);
         $idUtilisateur = 0;
