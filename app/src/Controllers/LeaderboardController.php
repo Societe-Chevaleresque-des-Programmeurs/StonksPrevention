@@ -8,7 +8,7 @@ use App\Utils\DB;
 use PDO;
 
 
-class ChoixController extends BaseController
+class LeaderboardController extends BaseController
 {
     public function getLeaderboard(Request $request, Response $response) {
         return;

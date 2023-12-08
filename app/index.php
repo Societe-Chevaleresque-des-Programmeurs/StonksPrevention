@@ -24,55 +24,63 @@ $app->addErrorMiddleware(true, true, true);
 $app->add(new Tuupola\Middleware\JwtAuthentication([
   "algorithm" => ["HS512"],
   'secure' => false,
-  "path" => ["/home"],
-  "ignore" => ["/auth/login"],
+  "ignore" => ["/"],
   "cookie" => 'jwt',
-  "secret" => "LaMonsterCestPourLesFaiblesMoiJeLeFaisSansRien",
-  "after" => function ($response, $arguments) {
-    return $response->withHeader("X-Musk", "Stonks");
-  },
-  "error" => function ($response, $arguments) {
-    $data["status"] = "error";
-    $data["message"] = $arguments["message"];
-
-    $response->getBody()->write(
-      json_encode($data, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT)
-    );
-
-    return $response->withHeader("Content-Type", "application/json");
-  }
+  "secret" => "LaMonsterCestPourLesFaiblesMoiJeLeFaisSansRien"
 ]));
 
 
-$app->group('/parcoure', function (RouteCollectorProxy $group) {
-  // retourne l'ensemble des parcours
-  $group->get('', [ParcouresController::class, 'getParcours']);
-});
-
-$app->group('/auth', function (RouteCollectorProxy $group) {
-  $group->post('/login', [UserController::class, 'login']);
-  $group->post('/register', [UserController::class, 'register']);
-  $group->get('/logout  ', [UserController::class, 'logout']);
+$app->get('/', function ($request, $response, $args) {
+    return $response->withStatus(302)->withHeader('Location', '/public/index.html');
 });
 
 
-$app->group('/etape', function (RouteCollectorProxy $group) {
-  // retourne les parcours associés à un id.
-  $group->get('/get/{id}', [EtapeController::class, 'getEtape']);
-  // retournes toutes les étapes
-  $group->get('/all', [EtapeController::class, 'getAll']);
-  // sauvegarde une étape selon le choix et renvoie l'id du suivant.
-  $group->get('{id_etape}/save/{id_choix}', [EtapeController::class, 'choisirSolution']);
+$app->get('public/{params:.*}', function ($request, $response, $args) {
+  var_dump($_SERVER['REQUEST_URI']);
+  $file = 'public/index.html';
+  if (file_exists($_SERVER['REQUEST_URI'])) {
+    $response->getBody()->write(file_get_contents($file));
+
+    return $response
+        ->withHeader('content-type', 'text/html')
+        ->withStatus(200);
+  }
 });
 
-// retourne les choix associé à une étape
-$app->group('/choix', function (RouteCollectorProxy $group) {
-  $group->get('/etape/{id}', [ChoixController::class, 'getChoix']);
-});
 
-$app->group('/leaderboard', function (RouteCollectorProxy $group) {
-  $group->get('/make', [LeaderboardController::class, 'makeLeaderboard']);
-  $group->get('/get', [LeaderboardController::class, 'getLeaderboard']);
+
+
+$app->group('/api', function (RouteCollectorProxy $group) {
+  $group->group('/parcoure', function (RouteCollectorProxy $group) {
+    // retourne l'ensemble des parcours
+    $group->get('', [ParcouresController::class, 'getParcours']);
+  });
+
+  $group->group('/auth', function (RouteCollectorProxy $group) {
+    $group->post('/login', [UserController::class, 'login']);
+    $group->post('/register', [UserController::class, 'register']);
+    $group->get('/logout  ', [UserController::class, 'logout']);
+  });
+
+
+  $group->group('/etape', function (RouteCollectorProxy $group) {
+    // retourne les parcours associés à un id.
+    $group->get('/get/{id}', [EtapeController::class, 'getEtape']);
+    // retournes toutes les étapes
+    $group->get('/all', [EtapeController::class, 'getAll']);
+    // sauvegarde une étape selon le choix et renvoie l'id du suivant.
+    $group->get('{id_etape}/save/{id_choix}', [EtapeController::class, 'choisirSolution']);
+  });
+
+  // retourne les choix associé à une étape
+  $group->group('/choix', function (RouteCollectorProxy $group) {
+    $group->get('/etape/{id}', [ChoixController::class, 'getChoix']);
+  });
+
+  $group->group('/leaderboard', function (RouteCollectorProxy $group) {
+    $group->get('/make', [LeaderboardController::class, 'makeLeaderboard']);
+    $group->get('/get', [LeaderboardController::class, 'getLeaderboard']);
+  });
 });
 
 

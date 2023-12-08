@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="fr" id="html">
+    <head>
+        <title>Nuit de l'Info</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://kit.fontawesome.com/9e5fc47a4e.js" crossorigin="anonymous"></script>
+        <script src="./js/auclairdelalune.js"></script>
+        <script src="./js/konami.js"></script>
+        <link href="css/style.css" rel="stylesheet">
+    </head>
+    <body onload="console.log('(WATCHA DOIN?!?)> (╯°□°)╯︵ ┻━┻')">
+        <div class="header">
+        
+        <h1 style="text-align: center;"><img width="150" src="./assets/StonksClimaCare.png"><span>N</span><span>u</span><span>i</span><span>t</span> <span>d</span><span>e</span>  <span>l</span><span>'</span><span>I</span><span>n</span><span>f</span><span>o</span> <span>2</span><span>0</span><span>2</span><span>3</span></h1>
+        <ul>
+            <li><a href="./index.html" class="active"><i style="width: auto;" class="fa-solid fa-tree-city"></i></a></li>
+            <li><a href="./parcours.html"><i class="fa-brands fa-pagelines"></i></a></li>
+            <li><a href="./login.html"><i style="width: auto;" class="fa-regular fa-circle-user"></i></a></li>
+        </ul>
+
+        </div id="content" class="content">
+
+        <div class="main" id="Comprendre">
+            <h1>Comprendre le changement climatique :</h1>
+
+            <p>Introduction : Le changement climatique est une réalité incontestable qui a des répercussions significatives sur notre planète et nos vies. Cette section vise à fournir une explication claire et accessible sur les causes et les conséquences du changement climatique.</p>
+                
+            <p>Causes du changement climatique : Explication des activités humaines, en particulier les émissions de gaz à effet de serre, qui ont contribué de manière significative au réchauffement de la planète. Des exemples concrets et des données chiffrées mettant en lumière l'impact de ces activités seront présentés pour une meilleure compréhension.</p>
+                
+            <p>Conséquences du changement climatique : Illustration des effets du changement climatique sur l'environnement, la biodiversité, les conditions météorologiques, les ressources naturelles et les populations. Des graphiques et des témoignages visuels pourront aider à sensibiliser les utilisateurs sur les conséquences réelles de ce phénomène.</p>
+                
+            <p>Concepts clés : Explication de termes importants tels que l'effet de serre, l'élévation du niveau de la mer, l'acidification des océans et la fonte des glaciers. Ces concepts seront présentés de manière accessible et pédagogique pour une meilleure appréhension du sujet.</p>
+                
+            <p>L'objectif de cette section est d'offrir une compréhension approfondie du changement climatique, en fournissant des explications claires et des données tangibles sur ses causes et ses effets, afin de sensibiliser les utilisateurs à cette problématique cruciale.</p>
+        </div>
+        
+        <div class="main" id="Démystifier">
+            <h1>Démystifier les fausses informations :</h1>
+
+            <p>Mythes courants : Identification et réfutation des idées fausses et des arguments climatosceptiques qui circulent souvent autour du changement climatique. Des exemples tels que "ce n’est pas à nous d’agir", "les énergies renouvelables ne sont pas assez efficaces", "la technologie nous sauvera", seront abordés de manière détaillée.</p>
+
+            <p>Réfutation basée sur des sources fiables : Présentation de données scientifiques et d'analyses provenant de sources reconnues pour contredire les idées reçues erronées sur les solutions climatiques. L'objectif est de fournir des informations factuelles et vérifiables qui permettront aux utilisateurs de distinguer les fausses croyances des faits avérés.</p>
+
+            <p>Réalités sur les solutions climatiques : Mise en avant des solutions concrètes et des avancées technologiques dans le domaine des énergies renouvelables, de l'efficacité énergétique, de la gestion des déchets, etc. Ces exemples illustreront que des actions sont possibles et efficaces pour lutter contre le changement climatique.</p>
+
+            <p>Cette section vise à démystifier les fausses informations et à contrer les idées reçues erronées sur le changement climatique, en fournissant des réfutations étayées par des sources fiables et en mettant en lumière les vraies solutions existantes pour le climat.</p>
+        </div>
+
+        <script>
+            function load_part(page) {
+                fetch(page+".html")
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById("html").innerHTML = data;
+                    animateElementsFI()
+
+                })
+                .catch(error => {
+                    console.error("Une erreur s'est produite lors du chargement de la partie : " + error);
+                });
+            };
+
+        </script>
+
+    </body>
+</html>
+
+<!--
+     _                 _                     _ _ _                     __            _                             
+    | |               | |                   | (_) |                   / _|          | |                            
+    | |     ___  ___  | |__   __ _ _ __   __| |_| |_ ___   ___  ___  | |_ ___  _ __ | |_   _ __ __ _ _ __ ___  ___ 
+    | |    / _ \/ __| | '_ \ / _` | '_ \ / _` | | __/ __| / __|/ _ \ |  _/ _ \| '_ \| __| | '__/ _` | '__/ _ \/ __|
+    | |___|  __/\__ \ | |_) | (_| | | | | (_| | | |_\__ \ \__ \  __/ | || (_) | | | | |_  | | | (_| | | |  __/\__ \
+    |______\___||___/_|_.__/ \__,_|_| |_|\__,_//\\__|___/ |___/\___| |_| \___/|_| |_|\__| |_|  \__,_|_|  \___||___/
+                    (_)                   | ||/ \|     | |                                                         
+     _ __ ___   __ _ _ ___    ___  _ __   | | __ _  ___| |__   ___   _ __   __ _ ___                               
+    | '_ ` _ \ / _` | / __|  / _ \| '_ \  | |/ _` |/ __| '_ \ / _ \ | '_ \ / _` / __|                              
+    | | | | | | (_| | \__ \ | (_) | | | | | | (_| | (__| | | |  __/ | |_) | (_| \__ \                              
+    |_| |_| |_|\__,_|_|___/  \___/|_| |_| |_|\__,_|\___|_| |_|\___| | .__/ \__,_|___/                              
+                                                                    | |                                                      ______      _                                        
+                                                                    |_|                            () o                /    (_) |       | |  o                               
+                                                                                                   /\     __,  _  _    _       _|_  __, | |      _   _  _   
+                                                                                                  /  \|  /  | / |/ |  |/      / | |/  | |/ \_|  |/  / |/ |  
+                                                                                                 /(__/|_/\_/|/  |  |_/|__/   (_/   \_/|_/\_/ |_/|__/  |  |_/
+                                                                                                           /|                                               
+                                                                                                           \|                                                  
+-->
