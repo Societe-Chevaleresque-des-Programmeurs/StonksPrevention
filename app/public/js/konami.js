@@ -27,5 +27,10 @@ document.addEventListener('keydown', function(e) {
 });
 
 function successKonami() {
-  window.alert('test');
+  if(document.body.classList.contains("blink")){
+    document.body.classList.remove("blink");
+  }else{
+    document.body.classList.add("blink");
+  }
+  
 }

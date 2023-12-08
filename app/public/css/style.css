@@ -206,3 +206,36 @@ input:hover {
     box-shadow: 10px 5px 5px greenyellow;
     color: #8707ff;
 }
+
+.blink :not(.buttonwithout){
+    --randomValue: 2;
+    animation: blink 3s infinite;
+}
+
+
+@keyframes blink {
+  0% {
+    opacity: 1;
+    color: red;
+  }
+  25% {
+    color: green;
+  }
+  50% {
+    opacity: 0;
+    transform: scale(2);
+      color: blue;
+  }
+  51% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  25% {
+    color: yellow;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+      color: red;
+  }
+}
