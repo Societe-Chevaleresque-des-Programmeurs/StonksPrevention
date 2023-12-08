@@ -7,6 +7,7 @@ use Firebase\JWT\ExpiredException;
 use Firebase\JWT\SignatureInvalidException;
 use Firebase\JWT\BeforeValidException;
 use Firebase\JWT\JWT;
+use Slim\Routing\RouteContext;
 
 use PDO;
 
@@ -62,22 +63,13 @@ class UserController extends BaseController
                 $utilisateur['id'] , UserController::$key
             );
 
+            $routeParser = RouteContext::fromRequest($request)->getRouteParser();
+            $url = $routeParser->urlFor('MyPage');
+
             setcookie('jwt', $jwt_token, ['path'=> '/']);    
-            $response
-                ->getBody()
-                ->write(['success' => True]);
-                
-            return $response
-                ->withHeader('Content-Type', 'application/json')
-                ->withStatus(200);
+            return $response->withStatus(302)->withHeader('Location', '/public/parcours.html');
         } else {
-            $response
-                ->getBody()
-                ->write(['success' => False]);
-                
-            return $response
-                ->withHeader('Content-Type', 'application/json')
-                ->withStatus(200);
+            return $response->withStatus(302)->withHeader('Location', '/public/login.html?erreur=mauvais_login');
         }
     }
 
@@ -91,13 +83,7 @@ class UserController extends BaseController
         $utilisateur = $stmt->fetch(PDO::FETCH_OBJ);
 
         if($utilisateur) {
-            $response
-                ->getBody()
-                ->write(['success' => False, 'error' => ['Utilisateur existe déjà.']]);
-
-            return $response
-                ->withHeader('Content-Type', 'application/json')
-                ->withStatus(200);
+            return $response->withStatus(302)->withHeader('Location', '/public/login.html?erreur=user_existant');
         }
 
         $stmt = $conn->prepare("INSERT INTO Utilisateur (pseudoUtilisateur, motDePasseUtilisateur) VALUES (:pseudo, :mdp)");
@@ -108,13 +94,7 @@ class UserController extends BaseController
         );
 
         setcookie('jwt', $jwt_token, ['path'=> '/']);    
-        $response
-            ->getBody()
-            ->write(['success' => True]);
-            
-        return $response
-            ->withHeader('Content-Type', 'application/json')
-            ->withStatus(200);
+        return $response->withStatus(302)->withHeader('Location', '/public/parcours.html');;
     
     }
 
