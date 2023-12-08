@@ -30,6 +30,10 @@ $app->add(new Tuupola\Middleware\JwtAuthentication([
 ]));
 
 
+$app->get('/', function ($request, $response, $args) {
+    return $response->withStatus(302)->withHeader('Location', '/public/index.html');
+});
+
 
 $app->get('public/{params:.*}', function ($request, $response, $args) {
   var_dump($_SERVER['REQUEST_URI']);
