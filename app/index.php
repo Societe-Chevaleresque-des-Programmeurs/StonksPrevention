@@ -50,7 +50,7 @@ $app->group('/auth',function(RouteCollectorProxy $group){
 });
 
 $app->group('/parcours',function(RouteCollectorProxy $group){
-  $group->get('/{id}', [ParcouresController::class, 'getParcoure']);
+  $group->get('/', [ParcouresController::class, 'getParcours']);
 });
 
 $app->group('/etape',function(RouteCollectorProxy $group){
