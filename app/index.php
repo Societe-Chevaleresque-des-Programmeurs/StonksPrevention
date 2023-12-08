@@ -2,7 +2,6 @@
 
 require __DIR__ . '/vendor/autoload.php';
 
-use App\Controllers\{EtapeController, HomeController, LeaderboardController, UserController};
 use App\Utils\DB;
 use DI\Container;
 use Slim\Factory\AppFactory;
@@ -37,26 +36,27 @@ $app->add(new Tuupola\Middleware\JwtAuthentication([
     $data["message"] = $arguments["message"];
 
     $response->getBody()->write(
-        json_encode($data, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT)
+      json_encode($data, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT)
     );
 
-    return $response->withHeader("Content-Type", "application/json");}
+    return $response->withHeader("Content-Type", "application/json");
+  }
 ]));
 
 
-$app->group('/parcoure',function(RouteCollectorProxy $group){
+$app->group('/parcoure', function (RouteCollectorProxy $group) {
   // retourne l'ensemble des parcours
   $group->get('', [ParcouresController::class, 'getParcours']);
 });
 
-$app->group('/auth',function(RouteCollectorProxy $group){
-    $group->post('/login', [UserController::class, 'login']);
-    $group->post('/register', [UserController::class, 'register']);
-    $group->get('/logout  ', [UserController::class, 'logout']);
+$app->group('/auth', function (RouteCollectorProxy $group) {
+  $group->post('/login', [UserController::class, 'login']);
+  $group->post('/register', [UserController::class, 'register']);
+  $group->get('/logout  ', [UserController::class, 'logout']);
 });
 
 
-$app->group('/etape',function(RouteCollectorProxy $group){
+$app->group('/etape', function (RouteCollectorProxy $group) {
   // retourne les parcours associés à un id.
   $group->get('/get/{id}', [EtapeController::class, 'getEtape']);
   // retournes toutes les étapes
@@ -66,11 +66,11 @@ $app->group('/etape',function(RouteCollectorProxy $group){
 });
 
 // retourne les choix associé à une étape
-$app->group('/choix',function(RouteCollectorProxy $group){
+$app->group('/choix', function (RouteCollectorProxy $group) {
   $group->get('/etape/{id}', [ChoixController::class, 'getChoix']);
 });
 
-$app->group('/leaderboard',function(RouteCollectorProxy $group){
+$app->group('/leaderboard', function (RouteCollectorProxy $group) {
   $group->get('/make', [LeaderboardController::class, 'makeLeaderboard']);
   $group->get('/get', [LeaderboardController::class, 'getLeaderboard']);
 });
