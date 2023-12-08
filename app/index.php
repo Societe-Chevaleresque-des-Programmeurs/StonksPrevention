@@ -45,7 +45,32 @@ $app->add(new Tuupola\Middleware\JwtAuthentication([
 
 $app->group('/auth',function(RouteCollectorProxy $group){
     $group->post('/login', [UserController::class, 'login']);
+    $group->post('/register', [UserController::class, 'register']);
+    $group->get('/register', [UserController::class, 'logout']);
 });
+
+$app->group('/parcours',function(RouteCollectorProxy $group){
+  $group->get('/{id}', [ParcoursController::class, 'getParcour']);
+});
+
+$app->group('/etape',function(RouteCollectorProxy $group){
+  $group->get('/{id}', [EtapeController::class, 'getEtape']);
+  $group->get('/all', [EtapeController::class, 'getAll']);
+  $group->get('{id_etape}/save/{id_choix}', [EtapeController::class, 'choisirSolution']);
+});
+
+$app->group('/choix',function(RouteCollectorProxy $group){
+  $group->get('/etape/{id}', [ChoixController::class, 'getChpoix']);
+});
+
+$app->group('/leaderboard',function(RouteCollectorProxy $group){
+  $group->get('/', [leaderboardController::class, 'getLeaderboard']);
+});
+
+
+
+
+
 
 $app->get('/home', [HomeController::class, 'home']);
 
