@@ -37,5 +37,5 @@ document.addEventListener('keydown', function(e) {
 });
   
 function successAuclairdelalune() {
-  window.alert('test2');
+  window.alert('Dieu de la musique activé');
 }
