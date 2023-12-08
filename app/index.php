@@ -7,6 +7,7 @@ use DI\Container;
 use Slim\Factory\AppFactory;
 use Slim\Routing\RouteCollectorProxy;
 use Tuupola\Middleware\JwtAuthenticationMiddleware;
+use App\Utils\Constants;
 
 use App\Controllers\{HomeController, UserController, EtapeController, LeaderboardController, ParcouresController, ChoixController};
 
@@ -27,7 +28,7 @@ $app->add(new Tuupola\Middleware\JwtAuthentication([
   "path" => ["/home"],
   "ignore" => ["/auth/login"],
   "cookie" => 'jwt',
-  "secret" => "LaMonsterCestPourLesFaiblesMoiJeLeFaisSansRien",
+  "secret" => Constants::JWT_SECRET,
   "after" => function ($response, $arguments) {
     return $response->withHeader("X-Musk", "Stonks");
   },
