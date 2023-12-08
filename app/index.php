@@ -46,7 +46,7 @@ $app->add(new Tuupola\Middleware\JwtAuthentication([
 $app->group('/auth',function(RouteCollectorProxy $group){
     $group->post('/login', [UserController::class, 'login']);
     $group->post('/register', [UserController::class, 'register']);
-    $group->get('/register', [UserController::class, 'logout']);
+    $group->get('/logout', [UserController::class, 'logout']);
 });
 
 $app->group('/parcours',function(RouteCollectorProxy $group){
