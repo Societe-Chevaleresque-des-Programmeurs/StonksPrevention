@@ -11,7 +11,11 @@ use Firebase\JWT\JWT;
 class UserController extends BaseController
 {
 
-    private $key = "supersecretkeyyoushouldnotcommittogithub";
+    private static $key = "LaMonsterCestPourLesFaiblesMoiJeLeFaisSansRien";
+
+    public static function getKey() {
+        return UserController::$key;
+    }
 
     public static function validate_jwt_token($jwt_token, $secret_key) {
         try {
@@ -46,9 +50,25 @@ class UserController extends BaseController
         $password = $request->getParsedBody('password');
 
         $user_id = 1; // assuming the user is authenticated
-        $secret_key = 'LaMonsterCestPourLesFaiblesMoiJeLeFaisSansRien';
     
-        $jwt_token = UserController::generate_jwt_token($user_id, $secret_key);
+        $jwt_token = UserController::generate_jwt_token($user_id, UserController::$key);
+
+
+        setcookie('jwt', $jwt_token, ['path'=> '/']);    
+        $response_data = array('jwt' => $jwt_token);
+        $response->getBody()->write(json_encode($response_data));
+        return $response->withHeader('Content-Type', 'application/json');
+    
+    }
+
+
+    public function register($request,$response, $args){
+
+        $username = $request->getParsedBody('username');
+        $password = $request->getParsedBody('password');
+
+        $user_id = 1; // assuming the user is authenticated
+        $jwt_token = UserController::generate_jwt_token($user_id, UserController::$key);
 
 
         setcookie('jwt',$jwt_token, ['path'=> '/']);    
