@@ -8,6 +8,8 @@ use Firebase\JWT\SignatureInvalidException;
 use Firebase\JWT\BeforeValidException;
 use Firebase\JWT\JWT;
 
+use PDO;
+
 class UserController extends BaseController
 {
 
@@ -46,19 +48,38 @@ class UserController extends BaseController
 
     public function login($request,$response, $args){
 
-        $username = $request->getParsedBody('username');
+        $pseudo = $request->getParsedBody('pseudo');
         $password = $request->getParsedBody('password');
 
-        $user_id = 1; // assuming the user is authenticated
-    
-        $jwt_token = UserController::generate_jwt_token($user_id, UserController::$key);
+        $conn = $this->db->connect();
+        $stmt = $conn->prepare("SELECT * FROM Utilisateur WHERE pseudoUtilisateur = :pseudo");
+        $stmt->execute([':pseudo' => $pseudo]);
+        $utilisateur = $stmt->fetch(PDO::FETCH_OBJ);
 
+        if ($utilisateur  && password_hash($password, PASSWORD_DEFAULT) == $utilisateur['motDePasseUtilisateur']) {
+            $hash = password_hash($password, PASSWORD_DEFAULT);
 
-        setcookie('jwt', $jwt_token, ['path'=> '/']);    
-        $response_data = array('jwt' => $jwt_token);
-        $response->getBody()->write(json_encode($response_data));
-        return $response->withHeader('Content-Type', 'application/json');
-    
+            $jwt_token = UserController::generate_jwt_token(
+                $utilisateur['id'] , UserController::$key
+            );
+
+            setcookie('jwt', $jwt_token, ['path'=> '/']);    
+            $response
+                ->getBody()
+                ->write(['success' => True]);
+                
+            return $response
+                ->withHeader('Content-Type', 'application/json')
+                ->withStatus(200);
+        } else {
+            $response
+                ->getBody()
+                ->write(['success' => False]);
+                
+            return $response
+                ->withHeader('Content-Type', 'application/json')
+                ->withStatus(200);
+        }
     }
 
 
