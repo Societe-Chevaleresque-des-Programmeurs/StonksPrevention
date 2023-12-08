@@ -57,7 +57,6 @@ INSERT INTO Parcours(idParcours, nomParcours, descriptionParcours, etapeTeteParc
         INSERT INTO Choix(nomChoix, pointChoix, idEtape) VALUES('Vrai', 0, 7);
         -- Choix 2
         INSERT INTO Choix(nomChoix, pointChoix, idEtape) VALUES('Faux', 100, 7);
-    
     -- Étape 3
     INSERT INTO Etape(idEtape, nomEtape, typeEtape, texteEtape, imageEtape, explicationEtape, ordreEtape, idParcours) VALUES(8, "Possibilités d'adaptations", 'vraiFaux', "On ne sait pas si les politiques d'adaptation sont efficaces", 'WGII.png', "Le GIEC qu'il existe des options d'adaptation réalisables et efficaces qui peuvent réduire les risques pour les personnes et la nature.", 3, 2);
         -- Choix 1
@@ -83,44 +82,39 @@ INSERT INTO Parcours(idParcours, nomParcours, descriptionParcours, etapeTeteParc
         -- Choix 3
         INSERT INTO Choix(nomChoix, pointChoix, idEtape) VALUES('inéquitable;inéquitables', 25, 10);
 
-
 -- Parcours 3
 INSERT INTO Parcours(idParcours, nomParcours, descriptionParcours, etapeTeteParcours, explicationFinParcours) VALUES(3, "Solutions d'atténuation", "Les solitions d'atténuation sont nombreuses, mais lesquelles sont réellement efficaces ? Tester vos connaissances et apprenez à faire face aux idées reçues", 11, "");
     -- Étape 1
     INSERT INTO Etape(idEtape, nomEtape, typeEtape, texteEtape, imageEtape, explicationEtape, ordreEtape, idParcours) VALUES(11, 'Empreinte carbone européen', 'plusOuMoins', "L'empreinte carbone moyenne d'un européen est-elle plus ou moins de 10tCO2 ? ", 'WGIII.png', "L'empreinte carbone moyenne d'un européen était de 7,8tCO2 en 2018, c'est moins qu'un nord américain (17tCO2) mais plus qu'un sud asiatique (1,5tCO2).", 1, 3);
         -- Choix 1
-        INSERT INTO Choix(nomChoix, pointChoix, idEtape) VALUES('Plus de 10tCO2', 0, 6);
+        INSERT INTO Choix(nomChoix, pointChoix, idEtape) VALUES('Plus de 10tCO2', 0, 11);
         -- Choix 2
-        INSERT INTO Choix(nomChoix, pointChoix, idEtape) VALUES('Moins de 10tCO2', 100, 6);
+        INSERT INTO Choix(nomChoix, pointChoix, idEtape) VALUES('Moins de 10tCO2', 100, 11);
     -- Étape 2
     INSERT INTO Etape(idEtape, nomEtape, typeEtape, texteEtape, imageEtape, explicationEtape, ordreEtape, idParcours) VALUES(12, "Coûts nouvelles technologies", 'QCM', "Au cours des 10 dernières années, le coût des énergies renouvelables et des batteries électriques ont :", "IPCC_AR6_WGIII_FigureSPM3.png", "Ces 10 dernières années leurs coûts ont drastiquement chuté, cette tendance dure même depuis 20 ans pour la pluspart de ces technologies.", 2, 3);
         -- Choix 1
-        INSERT INTO Choix(nomChoix, pointChoix, idEtape) VALUES('baissé', 100, 7);
+        INSERT INTO Choix(nomChoix, pointChoix, idEtape) VALUES('baissé', 100, 12);
         -- Choix 2
-        INSERT INTO Choix(nomChoix, pointChoix, idEtape) VALUES('stagné', 0, 7);
+        INSERT INTO Choix(nomChoix, pointChoix, idEtape) VALUES('stagné', 0, 12);
         -- Choix 2
-        INSERT INTO Choix(nomChoix, pointChoix, idEtape) VALUES('augmenté', 0, 7);
+        INSERT INTO Choix(nomChoix, pointChoix, idEtape) VALUES('augmenté', 0, 12);
     -- Étape 3
-    INSERT INTO Etape(idEtape, nomEtape, typeEtape, texteEtape, imageEtape, explicationEtape, ordreEtape, idParcours) VALUES(13, "Possibilités d'adaptations", 'vraiFaux', "On ne sait pas si les politiques d'adaptation sont efficaces", 'WGII.png', "Le GIEC qu'il existe des options d'adaptation réalisables et efficaces qui peuvent réduire les risques pour les personnes et la nature.", 3, 3);
+    INSERT INTO Etape(idEtape, nomEtape, typeEtape, texteEtape, imageEtape, explicationEtape, ordreEtape, idParcours) VALUES(13, "Voiture électrique", 'vraiFaux', "Une voiture électrique émet plus de gaz à effet de serre (GES) que son équivalent thermique", 'Figure 10.4 WGIII.png', "À la production une voiture électrique émet 50% de GES en plus que son équivalent thermique, mais tout au long de sa vie, elle émettra 70% de GES en moins si l'électricité utilisée est bas carbone. Il faut noté qu'il sera toujours plus favorable de faire le trajet avec un mode de déplacement actif quand cela est possible.", 3, 3);
         -- Choix 1
-        INSERT INTO Choix(nomChoix, pointChoix, idEtape) VALUES('Vrai', 0, 8);
+        INSERT INTO Choix(nomChoix, pointChoix, idEtape) VALUES('Vrai', 0, 13);
         -- Choix 2
-        INSERT INTO Choix(nomChoix, pointChoix, idEtape) VALUES('Faux', 100, 8);
+        INSERT INTO Choix(nomChoix, pointChoix, idEtape) VALUES('Faux', 100, 13);
     -- Étape 4
-    INSERT INTO Etape(idEtape, nomEtape, typeEtape, texteEtape, imageEtape, explicationEtape, ordreEtape, idParcours) VALUES(14, "Priorité dans l'adaptation", 'questionLibre', "Quelles sont les priorités dans l'élaboration d'une politique d'adaptation ?", 'WGII.png', "Les priorités à prendre en compte dans une politique d'adaptation sont la réduction des risques, l'équité et la justice.", 4, 3);
+    INSERT INTO Etape(idEtape, nomEtape, typeEtape, texteEtape, imageEtape, explicationEtape, ordreEtape, idParcours) VALUES(14, "Viande", 'QCM', "Par rapport à une même quantité de boeuf, un produit à base de soja est :", 'Figure 12.6 WGIII.png', "Les alternatives végétales sont beaucoup moins émettrices de GES, en plus de porter des co-bénéfices sur la santé.", 4, 3);
         -- Choix 1
-        INSERT INTO Choix(nomChoix, pointChoix, idEtape) VALUES('risques', 33, 9);
+        INSERT INTO Choix(nomChoix, pointChoix, idEtape) VALUES('5 fois plus émetteur de GES', 0, 14);
         -- Choix 2
-        INSERT INTO Choix(nomChoix, pointChoix, idEtape) VALUES('équité', 33, 9);
+        INSERT INTO Choix(nomChoix, pointChoix, idEtape) VALUES('5 fois moins émetteur de GES', 0, 14);
         -- Choix 3
-        INSERT INTO Choix(nomChoix, pointChoix, idEtape) VALUES("justice", 33, 9);
+        INSERT INTO Choix(nomChoix, pointChoix, idEtape) VALUES("15 fois plus émetteur de GES", 100, 14);
     -- Étape 5
-    INSERT INTO Etape(idEtape, nomEtape, typeEtape, texteEtape, imageEtape, explicationEtape, ordreEtape, idParcours) VALUES(15, 'Maladaptation', 'questionLibre', "Qu'est-ce qu'une maladaptation ?", 'Fond WGI.png', "La maladaptation fait référence aux actions qui peuvent entraîner un risque accru de conséquences néfastes liées au climat, notamment via une augmentation des émissions de gaz à effet de serre, une vulnérabilité accrue ou modifiée au changement climatique, des résultats plus inéquitables ou une diminution du bien-être, maintenant ou à l'avenir.", 5, 3);
+    INSERT INTO Etape(idEtape, nomEtape, typeEtape, texteEtape, imageEtape, explicationEtape, ordreEtape, idParcours) VALUES(15, 'Nucléaire', 'vraiFaux', "L'énergie nucléaire civile peut nous permettre de lutter contre le changement climatique.", 'Bilan carbone électricité RTE.png', "L'énergie nucléaire civile est une source d'énergie bas carbone. En France, elle compose 70% du mix électrique et permet de produire une électricité presque entièrement décarbonée (RTE).", 5, 3);
         -- Choix 1
-        INSERT INTO Choix(nomChoix, pointChoix, idEtape) VALUES("risque accru;risques accrus", 25, 10);
+        INSERT INTO Choix(nomChoix, pointChoix, idEtape) VALUES("Vrai", 100, 15);
         -- Choix 2
-        INSERT INTO Choix(nomChoix, pointChoix, idEtape) VALUES('conséquences néfastes', 25, 10);
-        -- Choix 3
-        INSERT INTO Choix(nomChoix, pointChoix, idEtape) VALUES('vulnérabilité accrue', 25, 10);
-        -- Choix 3
-        INSERT INTO Choix(nomChoix, pointChoix, idEtape) VALUES('inéquitable;inéquitables', 25, 10);
+        INSERT INTO Choix(nomChoix, pointChoix, idEtape) VALUES('Faux', 0, 15);
