@@ -25,6 +25,23 @@ class EtapeController extends BaseController
             ->withStatus(200);
     }
 
+    public function choisirSolution (Request $request, Response $response, $args) {
+        $id_etape = $args['id_etape'];
+        $id_choix = $args['id_choix'];
+        
+        /*
+        $conn = $this->db->connect();
+        $stmt = $conn->prepare("SELECT * FROM Etape WHERE idEtape = :idEtape");
+        $stmt->execute([':idEtape' => $id]);
+        $etapes = $stmt->fetchAll(PDO::FETCH_OBJ);
+        
+        $response->getBody()->write(json_encode($etapes));
+        return $response
+            ->withHeader('content-type', 'application/json')
+            ->withStatus(200);
+        */
+    }
+
     public function getAll(Request $request, Response $response) {
         $conn = $this->db->connect();
         $result = $conn->query("SELECT * FROM Etape;");
