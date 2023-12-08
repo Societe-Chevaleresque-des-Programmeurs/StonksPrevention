@@ -72,12 +72,13 @@ $app->group('/leaderboard',function(RouteCollectorProxy $group){
 
 
 
-
+/*
 $app->get('/home', [HomeController::class, 'home']);
 
 $app->group('/etape',function(RouteCollectorProxy $group){
   $group->get('/get/{id}', [EtapeController::class, 'getEtapes']);
 });
+*/
 
 
 $app->run();
