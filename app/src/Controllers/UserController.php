@@ -8,10 +8,16 @@ use Firebase\JWT\SignatureInvalidException;
 use Firebase\JWT\BeforeValidException;
 use Firebase\JWT\JWT;
 
+use PDO;
+
 class UserController extends BaseController
 {
 
-    private $key = "supersecretkeyyoushouldnotcommittogithub";
+    private static $key = "LaMonsterCestPourLesFaiblesMoiJeLeFaisSansRien";
+
+    public static function getKey() {
+        return UserController::$key;
+    }
 
     public static function validate_jwt_token($jwt_token, $secret_key) {
         try {
@@ -42,13 +48,48 @@ class UserController extends BaseController
 
     public function login($request,$response, $args){
 
+        $pseudo = $request->getParsedBody('pseudo');
+        $password = $request->getParsedBody('password');
+
+        $conn = $this->db->connect();
+        $stmt = $conn->prepare("SELECT * FROM Utilisateur WHERE pseudoUtilisateur = :pseudo");
+        $stmt->execute([':pseudo' => $pseudo]);
+        $utilisateur = $stmt->fetch(PDO::FETCH_OBJ);
+
+        if ($utilisateur  && password_hash($password, PASSWORD_DEFAULT) == $utilisateur['motDePasseUtilisateur']) {
+            $hash = password_hash($password, PASSWORD_DEFAULT);
+
+            $jwt_token = UserController::generate_jwt_token(
+                $utilisateur['id'] , UserController::$key
+            );
+
+            setcookie('jwt', $jwt_token, ['path'=> '/']);    
+            $response
+                ->getBody()
+                ->write(['success' => True]);
+                
+            return $response
+                ->withHeader('Content-Type', 'application/json')
+                ->withStatus(200);
+        } else {
+            $response
+                ->getBody()
+                ->write(['success' => False]);
+                
+            return $response
+                ->withHeader('Content-Type', 'application/json')
+                ->withStatus(200);
+        }
+    }
+
+
+    public function register($request,$response, $args){
+
         $username = $request->getParsedBody('username');
         $password = $request->getParsedBody('password');
 
         $user_id = 1; // assuming the user is authenticated
-        $secret_key = 'LaMonsterCestPourLesFaiblesMoiJeLeFaisSansRien';
-    
-        $jwt_token = UserController::generate_jwt_token($user_id, $secret_key);
+        $jwt_token = UserController::generate_jwt_token($user_id, UserController::$key);
 
 
         setcookie('jwt',$jwt_token, ['path'=> '/']);    
