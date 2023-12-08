@@ -1,15 +1,13 @@
 <?php
 
 require __DIR__ . '/vendor/autoload.php';
+
+use App\Controllers\{EtapeController, HomeController, LeaderboardController, UserController};
 use App\Utils\DB;
-use Slim\Psr7\Request as Request;
-use Slim\Psr7\Response as Response;
-use Slim\Factory\AppFactory;
 use DI\Container;
+use Slim\Factory\AppFactory;
 use Slim\Routing\RouteCollectorProxy;
 use Tuupola\Middleware\JwtAuthenticationMiddleware;
-
-use App\Controllers\{HomeController, UserController, EtapeController};
 
 $db = new DB();
 $container = new Container();
@@ -64,8 +62,8 @@ $app->group('/choix',function(RouteCollectorProxy $group){
 });
 
 $app->group('/leaderboard',function(RouteCollectorProxy $group){
-  $group->get('/make', [leaderboardController::class, 'makeLeaderboard']);
-  $group->get('/get', [leaderboardController::class, 'getLeaderboard']);
+  $group->get('/make', [LeaderboardController::class, 'makeLeaderboard']);
+  $group->get('/get', [LeaderboardController::class, 'getLeaderboard']);
 });
 
 

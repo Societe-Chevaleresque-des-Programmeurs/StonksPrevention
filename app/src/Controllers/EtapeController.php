@@ -25,5 +25,15 @@ class EtapeController extends BaseController
             ->withStatus(200);
     }
 
+    public function getAll(Request $request, Response $response) {
+        $conn = $this->db->connect();
+        $result = $conn->query("SELECT * FROM Etape;");
+        $etapes = $result->fetchAll(PDO::FETCH_OBJ);
 
+        $response->getBody()->write(json_encode($etapes));
+
+        return $response
+            ->withHeader('content-type', 'application/json')
+            ->withStatus(200);
+    }
 }
