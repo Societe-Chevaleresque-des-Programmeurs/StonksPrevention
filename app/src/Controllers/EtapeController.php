@@ -10,7 +10,7 @@ use PDO;
 
 class EtapeController extends BaseController
 {
-    public function getEtapes(Request $request, Response $response, $args) {
+    public function getEtapes (Request $request, Response $response, $args) {
         $id = $args['id'];
         
         $conn = $this->db->connect();
@@ -23,14 +23,7 @@ class EtapeController extends BaseController
         return $response
             ->withHeader('content-type', 'application/json')
             ->withStatus(200);
-
     }
 
-    public function test(Request $request, Response $response, $args) {
-        $response->getBody()->write(json_encode('ddd'));
-        return $response
-        ->withHeader('content-type', 'application/json')
-        ->withStatus(200);
-    }
 
 }

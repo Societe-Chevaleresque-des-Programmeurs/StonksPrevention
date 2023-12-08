@@ -21,13 +21,13 @@ $app->addRoutingMiddleware();
 $app->addErrorMiddleware(true, true, true);
 // $app->add(new BasePathMiddleware($app));
 
-/*
+
 $app->add(new Tuupola\Middleware\JwtAuthentication([
   "algorithm" => ["HS512"],
   'secure' => false,
-  "path" => ["/customers-data/"],
+  "path" => ["/home"],
   "ignore" => ["/auth/login"],
-  "attribute" => "jwt",
+  "cookie" => 'jwt',
   "secret" => "LaMonsterCestPourLesFaiblesMoiJeLeFaisSansRien",
   "after" => function ($response, $arguments) {
     return $response->withHeader("X-Musk", "Stonks");
@@ -43,14 +43,11 @@ $app->add(new Tuupola\Middleware\JwtAuthentication([
     return $response->withHeader("Content-Type", "application/json");}
 ]));
 
-
 $app->group('/auth',function(RouteCollectorProxy $group){
     $group->post('/login', [UserController::class, 'login']);
 });
 
-*/
-
-$app->get('/', [HomeController::class, 'home']);
+$app->get('/home', [HomeController::class, 'home']);
 
 $app->group('/etape',function(RouteCollectorProxy $group){
   $group->get('/get/{id}', [EtapeController::class, 'getEtapes']);

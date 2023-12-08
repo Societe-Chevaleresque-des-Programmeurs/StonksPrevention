@@ -49,7 +49,9 @@ class UserController extends BaseController
         $secret_key = 'LaMonsterCestPourLesFaiblesMoiJeLeFaisSansRien';
     
         $jwt_token = UserController::generate_jwt_token($user_id, $secret_key);
-    
+
+
+        setcookie('jwt',$jwt_token, ['path'=> '/']);    
         $response_data = array('jwt' => $jwt_token);
         $response->getBody()->write(json_encode($response_data));
         return $response->withHeader('Content-Type', 'application/json');
