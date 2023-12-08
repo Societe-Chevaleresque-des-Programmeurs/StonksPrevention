@@ -43,8 +43,9 @@ $app->add(new Tuupola\Middleware\JwtAuthentication([
     return $response->withHeader("Content-Type", "application/json");}
 ]));
 
-// retourne l'ensemble des parcours
+
 $app->group('/parcoure',function(RouteCollectorProxy $group){
+  // retourne l'ensemble des parcours
   $group->get('', [ParcouresController::class, 'getParcours']);
 });
 
@@ -56,8 +57,11 @@ $app->group('/auth',function(RouteCollectorProxy $group){
 
 
 $app->group('/etape',function(RouteCollectorProxy $group){
+  // retourne les parcours associés à un id.
   $group->get('/get/{id}', [EtapeController::class, 'getEtape']);
+  // retournes toutes les étapes
   $group->get('/all', [EtapeController::class, 'getAll']);
+  // sauvegarde une étape selon le choix et renvoie l'id du suivant.
   $group->get('{id_etape}/save/{id_choix}', [EtapeController::class, 'choisirSolution']);
 });
 
@@ -70,9 +74,6 @@ $app->group('/leaderboard',function(RouteCollectorProxy $group){
   $group->get('/make', [LeaderboardController::class, 'makeLeaderboard']);
   $group->get('/get', [LeaderboardController::class, 'getLeaderboard']);
 });
-
-
-
 
 
 /*
