@@ -9,7 +9,7 @@ use DI\Container;
 use Slim\Routing\RouteCollectorProxy;
 use Tuupola\Middleware\JwtAuthenticationMiddleware;
 
-use App\Controllers\{HomeController, UserController, EtapeController};
+use App\Controllers\{HomeController, UserController, EtapeController, LeaderboardController, ParcouresController, ChoixController};
 
 $db = new DB();
 $container = new Container();
@@ -46,7 +46,7 @@ $app->add(new Tuupola\Middleware\JwtAuthentication([
 $app->group('/auth',function(RouteCollectorProxy $group){
     $group->post('/login', [UserController::class, 'login']);
     $group->post('/register', [UserController::class, 'register']);
-    $group->get('/logout', [UserController::class, 'logout']);
+    $group->get('/logout  ', [UserController::class, 'logout']);
 });
 
 $app->group('/parcours',function(RouteCollectorProxy $group){
