@@ -1,0 +1,32 @@
+
+<div class="question">
+    
+    <h1>Question ?</h1>
+    <div class="parcour" onclick="load_part('Chemin1')">
+        <h2>Vrai / Faux</h2>
+    </div>
+    <div class="parcour" onclick="load_part('Chemin2')">
+        <h2>Bouton</h2>
+    </div>
+    <div class="parcour" onclick="load_part('Score')">
+        <h2>Tableau Score</h2>
+    </div>
+    <div class="content" id="content">
+    </div>
+
+    <script>
+        function load_part(page) {
+                fetch(page+".html")
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById("content").innerHTML = data;
+                    animateElementsFI()
+
+                })
+                .catch(error => {
+                    console.error("Une erreur s'est produite lors du chargement de la partie : " + error);
+                });
+            };
+    </script>
+
+</div>
