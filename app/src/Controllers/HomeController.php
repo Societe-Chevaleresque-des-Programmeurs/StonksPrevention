@@ -21,11 +21,11 @@ class HomeController extends BaseController
         //$html = $this->renderer->fetch("index.html", json_encode($etapes));
         
 
-        $content = file_get_contents("../index.html");
-
-        $response->getBody()->write($content);
-
-        return $response->withHeader('Content-Type', 'text/html');
+        $response->getBody()->write(json_encode($etapes));
+ 
+        return $response
+            ->withHeader('content-type', 'application/json')
+            ->withStatus(200);
     }
 
 }

@@ -1,11 +1,10 @@
-$(document).ready(function() {
-    $.ajax({
+$.ajax({
         url: 'http://localhost:8888/api/parcoure', // Replace with your PHP route that returns JSON data
         type: 'POST', // Use GET method to retrieve data
         dataType: 'json', // Expected data type is JSON
         success: function(response) {
             // The 'response' variable holds the JSON data returned by the server
-            console.log(response); // Log the response to the console
+            console.log("response"); // Log the response to the console
             
             // You can handle the received data here, for example:
             // Loop through the data and do something
@@ -20,4 +19,3 @@ $(document).ready(function() {
             console.error(xhr.responseText);
         }
     });
-});
