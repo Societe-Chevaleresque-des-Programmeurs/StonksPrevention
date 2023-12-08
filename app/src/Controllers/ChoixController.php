@@ -10,8 +10,20 @@ use PDO;
 
 class ChoixController extends BaseController
 {
-    public function getChoix(Request $request, Response $response) {
-        return;
+    public function getChoix(Request $request, Response $response, $args) {
+        $id = $args['id'];
+
+        $conn = $this->db->connect();
+        $stmt = $conn->prepare("SELECT * FROM Choix WHERE idChoix = :idChoix");
+        $stmt->execute(['idChoix' => $id]);
+
+        $choix = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+        $response->getBody()->write(json_encode($choix));
+
+        return $response
+            ->withHeader('content-type', 'application/json')
+            ->withStatus(200);
     }
 
 }
