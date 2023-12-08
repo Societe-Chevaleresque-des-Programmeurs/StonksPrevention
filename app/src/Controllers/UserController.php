@@ -80,8 +80,9 @@ class UserController extends BaseController
     }
 
     public function register($request,$response, $args){
-        $pseudo = $request->getParsedBody('pseudo');
-        $password = $request->getParsedBody('password');
+        $allPostPutVars = $request->getParsedBody();
+        $pseudo = $allPostPutVars['pseudo'];
+        $password = $allPostPutVars['password'];
 
         $conn = $this->db->connect();
         $stmt = $conn->prepare("SELECT * FROM Utilisateur WHERE pseudoUtilisateur = :pseudo");
