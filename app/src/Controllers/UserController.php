@@ -117,4 +117,11 @@ class UserController extends BaseController
             ->withStatus(200);
     
     }
+
+    public function logout($request,$response, $args){
+        unset($_SESSION['jwt']);   
+        return $response
+        ->withHeader('Content-Type', 'application/json')
+        ->withStatus(200);
+    }
 }

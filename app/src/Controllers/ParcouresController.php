@@ -7,29 +7,18 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 use App\Utils\DB;
 use PDO;
 
-
-class EtapeController extends BaseController
+class ParcouresController extends BaseController
 {
-    public function getEtape(Request $request, Response $response) {
-        return;
-    }
-
-    public function getAll(Request $request, Response $response) {
-        return;
-    }
-
-    public function choisirSolution(Request $request, Response $response) {
-        return;
-    }
-    public function recuperParcoure(Request $request, Response $response){
+    public function getParcours(Request $request, Response $response){
         $conn = $this->db->connect();
-        $stmt = $conn->prepare("SELECT * FROM parcours");
+        $stmt = $conn->prepare("SELECT * FROM Parcours");
         $stmt->execute([]);
         $etapes = $stmt->fetchAll(PDO::FETCH_OBJ);
         
         $response->getBody()->write(json_encode($etapes));
  
-        return $response;
-    
+        return $response
+            ->withHeader('Content-Type', 'application/json')
+            ->withStatus(200);
     }
 }
