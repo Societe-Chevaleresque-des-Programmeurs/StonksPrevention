@@ -1,6 +1,7 @@
 DELETE FROM Parcours;
 DELETE FROM Etape;
 DELETE FROM Choix;
+DELETE FROM Utilisateur;
 
 -- Parcours 1
 INSERT INTO Parcours(idParcours, nomParcours, descriptionParcours, etapeTeteParcours, explicationFinParcours) VALUES(1, 'État du climat', "Découvrez quel est l'état actuel du climat et quelles sont les causes de son changement.", 1, "Le groupe 1 du GIEC s'occupe de synthétiser la littérature scientifique sur les éléments physiques relatifs au changement climatique. Il répond aux principales questions sur la réalité de ce changement, son rôle est essentiel et permet de s'assurer des différentes causes à l'oeuvre.");
@@ -118,3 +119,6 @@ INSERT INTO Parcours(idParcours, nomParcours, descriptionParcours, etapeTeteParc
         INSERT INTO Choix(nomChoix, pointChoix, idEtape) VALUES("Vrai", 100, 15);
         -- Choix 2
         INSERT INTO Choix(nomChoix, pointChoix, idEtape) VALUES('Faux', 0, 15);
+
+-- mdp : root
+INSERT INTO Utilisateur(idUtilisateur, motDePasseUtilisateur, pseudoUtilisateur) VALUES(1, '$2y$10$gw8HwcHnBCoBQMHql0jAXu4RekX5p53gcaNI7wzxcYsVYiDyOQZUC', 'RickRoll');
