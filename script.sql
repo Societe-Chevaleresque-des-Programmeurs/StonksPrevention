@@ -11,7 +11,8 @@ CREATE TABLE Parcours(
         idParcours          Int  Auto_increment  NOT NULL ,
         nomParcours         Varchar (150) NOT NULL ,
         descriptionParcours Varchar (500) NOT NULL ,
-        etapeTeteParcours   Int NOT NULL
+        etapeTeteParcours   Int NOT NULL,
+        explicationFinParcours VARCHAR(500) NOT NULL
 	,CONSTRAINT Parcours_PK PRIMARY KEY (idParcours)
 )ENGINE=InnoDB;
 
@@ -78,15 +79,15 @@ CREATE TABLE tentative(
 
 
 #------------------------------------------------------------
-# Table: tentaivechoix
+# Table: tentativechoix
 #------------------------------------------------------------
 
-CREATE TABLE tentaivechoix(
+CREATE TABLE tentativechoix(
         idChoix     Int NOT NULL ,
         idTentative Int NOT NULL
-	,CONSTRAINT tentaivechoix_PK PRIMARY KEY (idChoix,idTentative)
+	,CONSTRAINT tentativechoix_PK PRIMARY KEY (idChoix,idTentative)
 
-	,CONSTRAINT tentaivechoix_Choix_FK FOREIGN KEY (idChoix) REFERENCES Choix(idChoix)
-	,CONSTRAINT tentaivechoix_tentative0_FK FOREIGN KEY (idTentative) REFERENCES tentative(idTentative)
+	,CONSTRAINT tentativechoix_Choix_FK FOREIGN KEY (idChoix) REFERENCES Choix(idChoix)
+	,CONSTRAINT tentativechoix_tentative0_FK FOREIGN KEY (idTentative) REFERENCES tentative(idTentative)
 )ENGINE=InnoDB;
 

@@ -6,9 +6,9 @@ use PDO;
 
 class DB
 {
-    private $host = 'localhost';
+    private $host = 'db';
     private $user = 'root';
-    private $pass = '';
+    private $pass = 'password';
     private $dbname = 'NUITINFO';
 
     public function connect()
