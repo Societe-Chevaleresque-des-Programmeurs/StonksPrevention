@@ -21,5 +21,15 @@ class EtapeController extends BaseController
     public function choisirSolution(Request $request, Response $response) {
         return;
     }
-
+    public function recuperParcoure(Request $request, Response $response){
+        $conn = $this->db->connect();
+        $stmt = $conn->prepare("SELECT * FROM parcours");
+        $stmt->execute([]);
+        $etapes = $stmt->fetchAll(PDO::FETCH_OBJ);
+        
+        $response->getBody()->write(json_encode($etapes));
+ 
+        return $response;
+    
+    }
 }
